@@ -20,8 +20,7 @@ public class HangmanApplication {
         String inFromUser = null ;
         String inSecFromUser = null;
              
-        try {  
-
+        try { 
                 
             /*clientSocket = new Socket("172.20.185.209", 1234); 
             outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
