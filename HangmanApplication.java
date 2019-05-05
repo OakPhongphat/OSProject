@@ -21,7 +21,7 @@ public class HangmanApplication {
              
         try { 
                 
-            clientSocket = new Socket("localhost", 1234); 
+            clientSocket = new Socket("192.168.10.161", 1234); 
             outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
             inFromServer = new Scanner(clientSocket.getInputStream());
                
