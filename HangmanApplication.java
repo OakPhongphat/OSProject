@@ -53,24 +53,10 @@ public class HangmanApplication {
                 }
             }
                 
-<<<<<<< HEAD
-            
-            
-            while (doYouWantToPlay) {
-               
-                clientSocket = new Socket("localhost", 1234); 
-=======
-              
-            
-            
-            
-            
-            boolean doYouWantToPlay = true;
             
         
             while (doYouWantToPlay) {
-                clientSocket = new Socket("172.20.185.209", 1234); 
->>>>>>> ccb7aee3127eef0f00f1c2ee893b44f1a4711923
+                clientSocket = new Socket("localhost", 1234); 
                 outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
                 inFromServer = new Scanner(clientSocket.getInputStream());
                 
