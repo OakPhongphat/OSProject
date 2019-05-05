@@ -16,6 +16,7 @@ public class TCPConcurrentServer {
       while(true) {
          try {  
             System.out.println("The server is waiting ");
+            System.out.println("Hello ");
             Socket connectionSocket = welcomeSocket.accept(); 
             EchoThread echoThread = new EchoThread(connectionSocket);
             echoThread.start();
