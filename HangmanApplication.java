@@ -21,7 +21,7 @@ public class HangmanApplication {
              
         try { 
                 
-            clientSocket = new Socket("192.168.10.161", 1234); 
+            clientSocket = new Socket("192.168.185.209", 1234); 
             outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
             inFromServer = new Scanner(clientSocket.getInputStream());
                
@@ -40,27 +40,27 @@ public class HangmanApplication {
             }
                 
                
-            outToServer.writeBytes(inFromUser+'\n');
-            answer = inFromServer.nextLine(); 
-            System.out.println("FROM SERVER: " + answer);
-            Hangman game = new Hangman(answer);
+         outToServer.writeBytes(inFromUser+'\n');
+         answer = inFromServer.nextLine(); 
+         System.out.println("FROM SERVER: " + answer);
+         Hangman game = new Hangman(answer);
             
             
-            System.out.println("Welcome to hangman! I will pick a word and you will guess it character by character\n" +
+         System.out.println("Welcome to hangman! I will pick a word and you will guess it character by character\n" +
                             ". If you guess it wrong 6 times, then I win. If you can guess it before, then you win"
                             );
-        System.out.println();
-        System.out.println("I have picked a word and below is a picture. Below is your current guess " +
+         System.out.println();
+         System.out.println("I have picked a word and below is a picture. Below is your current guess " +
                             "That starts as nothing.\n Every time you guess incorrectly, I will add a body part.\n" +
                             "When its a full person, you lose.");
-        boolean doYouWantToPlay = true;
+         boolean doYouWantToPlay = true;
         
-        while (doYouWantToPlay) {
-            System.out.println();
-            System.out.println("Alright, Lets play");
+         while (doYouWantToPlay) {
+              System.out.println();
+                System.out.println("Alright, Lets play");
             
            
-            do {
+          do {
                 
                 System.out.println();
                 System.out.println(game.drawPicture());
