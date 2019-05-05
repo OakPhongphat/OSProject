@@ -10,6 +10,7 @@ public class EchoThread extends Thread {
     StringBuilder currentGuess;
     String answer = null;
     private Socket connectionSocket;
+    
     public EchoThread(Socket connectionSocket) {
         this.connectionSocket = connectionSocket;
     }
@@ -18,13 +19,11 @@ public class EchoThread extends Thread {
         
         Scanner inFromClient = null;
         DataOutputStream outToClient = null;
+        
         try {
             inFromClient = new Scanner(connectionSocket.getInputStream());
-            outToClient = new DataOutputStream(connectionSocket.getOutputStream()); 
-            String clientSentence = inFromClient.nextLine(); 
-            chooseWord();
-            
-            
+            outToClient = new DataOutputStream(connectionSocket.getOutputStream());  
+            chooseWord();          
             
             //Send answer to client
             answer = mysteryWord;
@@ -48,6 +47,7 @@ public class EchoThread extends Thread {
             }
         }
     }
+    
     public void chooseWord() throws IOException {
         initializeStream();
         mysteryWord = pickWord();
@@ -77,5 +77,3 @@ public class EchoThread extends Thread {
     }
 
 }
-
-

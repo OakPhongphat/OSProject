@@ -5,59 +5,68 @@ import java.util.Scanner;
 
 public class HangmanApplication {
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         
         Scanner sc = new Scanner(System.in);
         String answer = null;
-        String Fanswer;
+        
         boolean startgame = false;
         
              
-             
+        boolean doYouWantToPlay = true;     
         Socket clientSocket = null;
         DataOutputStream outToServer = null;
         Scanner inFromServer = null;
         String inFromUser = null ;
+        String inSecFromUser = null;
              
         try { 
                 
-            clientSocket = new Socket("192.168.10.161", 1234); 
+            /*clientSocket = new Socket("172.20.185.209", 1234); 
             outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
-            inFromServer = new Scanner(clientSocket.getInputStream());
+            inFromServer = new Scanner(clientSocket.getInputStream());*/
                
             while(!startgame){
+                
+                System.out.println("Welcome to hangman! I will pick a word and you will guess it character by character\n" +
+                            ". If you guess it wrong 6 times, then I win. If you can guess it before, then you win"
+                            );
+                
+                System.out.println();
+                System.out.println("I have picked a word and below is a picture. Below is your current guess " +
+                            "That starts as nothing.\n Every time you guess incorrectly, I will add a body part.\n" +
+                            "When its a full person, you lose.");
+                System.out.println();
                    
                 System.out.println("Do you want to play a Hangman Games Y/N ");
-                inFromUser = sc.nextLine();
-                if(inFromUser.equals("Y") || inFromUser.equals("y")){ 
+                inSecFromUser = sc.nextLine();
+                if(inSecFromUser.equals("Y") || inSecFromUser.equals("y")){ 
                     System.out.println("");
                     startgame = true;
                        
                 }
                 else{
                     System.out.println("Programe will exit ");
+                    doYouWantToPlay = false;
+                    startgame = true;
                 }
             }
                 
+            
+            
+            while (doYouWantToPlay) {
                
-            outToServer.writeBytes(inFromUser+'\n');
-            answer = inFromServer.nextLine(); 
-            System.out.println("FROM SERVER: " + answer);
-            Hangman game = new Hangman(answer);
-            
-            
-            System.out.println("Welcome to hangman! I will pick a word and you will guess it character by character\n" +
-                            ". If you guess it wrong 6 times, then I win. If you can guess it before, then you win"
-                            );
-        System.out.println();
-        System.out.println("I have picked a word and below is a picture. Below is your current guess " +
-                            "That starts as nothing.\n Every time you guess incorrectly, I will add a body part.\n" +
-                            "When its a full person, you lose.");
-        boolean doYouWantToPlay = true;
-        
-        while (doYouWantToPlay) {
-            System.out.println();
-            System.out.println("Alright, Lets play");
+                clientSocket = new Socket("localhost", 1234); 
+                outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
+                inFromServer = new Scanner(clientSocket.getInputStream());
+                
+                System.out.println();
+                System.out.println("Alright, Lets play");
+                
+                outToServer.writeBytes(inFromUser+'\n');
+                answer = inFromServer.nextLine(); 
+                System.out.println("FROM SERVER: " + answer);
+                Hangman game = new Hangman(answer);
             
            
             do {
@@ -92,14 +101,23 @@ public class HangmanApplication {
                     System.out.println("Unfortunately that word is not in the guess");
                 }
                 
+               
+                
             }
             
             while (!game.gameOver());
 
             System.out.println();
+            
             System.out.println("Do you want to play another game. Enter Y if you do.");
-            Character response = (sc.next().toUpperCase()).charAt(0);
-            doYouWantToPlay = (response == 'Y');
+             
+            inSecFromUser = sc.next();
+            doYouWantToPlay = ((inSecFromUser.equals("Y") || inSecFromUser.equals("y")));
+            
+            System.out.println(doYouWantToPlay);
+            
+            
+            
         }
   
         }

@@ -3,12 +3,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public final class Hangman {
+public  class Hangman {
     String mysteryWord = null;
     String question;
     StringBuilder currentGuess;
+    String os;
     ArrayList<Character> previousGuesses = new ArrayList<>();
-
+   
     int maxTries = 6;
     int currentTry = 0;
 
@@ -38,13 +39,15 @@ public final class Hangman {
         return "Current guess: " + currentGuess.toString();
     }
 
-    public boolean gameOver() {
+    public boolean gameOver() throws IOException, InterruptedException {
         if (didWeWin()) {
-            System.out.println();
+            //clearConsole();
+            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
             System.out.println("Congrats. You won the game");
         }
         else if (didWeLose()) {
-            System.out.println();
+            //clearConsole();
+            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
             System.out.println("Sorry. You lost. You used all your 6 chances. \n" +
                                 " The mystery word was: " + mysteryWord + ".");
         }
@@ -181,5 +184,24 @@ public final class Hangman {
         
     }
     
-}
+    /*private void clearConsole() throws IOException {
+        Thread clear = new Thread(ClearConsole());
+        clear.start();
+    }
 
+    /*private Runnable ClearConsole() throws IOException {
+        String os;
+        os = System.getProperty("os.name");
+        if(os.contains("windows")){
+            Runtime.getRuntime().exec("cls");
+        }
+        else{
+            Runtime.getRuntime().exec("cler");
+        }
+        return null;
+    } */
+    
+    
+}
+ 
+    

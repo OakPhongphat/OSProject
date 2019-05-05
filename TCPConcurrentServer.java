@@ -4,8 +4,7 @@ import java.net.*;
 import java.util.*;
 public class TCPConcurrentServer { 
    public static void main(String argv[])  { 
-      String clientSentence; 
-      String capitalizedSentence; 
+       
       ServerSocket welcomeSocket = null;
       try {
          welcomeSocket = new ServerSocket(1234);
@@ -18,7 +17,7 @@ public class TCPConcurrentServer {
          try {  
             System.out.println("The server is waiting ");
             Socket connectionSocket = welcomeSocket.accept(); 
-    EchoThread echoThread = new EchoThread(connectionSocket);
+            EchoThread echoThread = new EchoThread(connectionSocket);
             echoThread.start();
          }
          catch (IOException e) {
