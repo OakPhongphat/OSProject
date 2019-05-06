@@ -41,12 +41,13 @@ public  class Hangman {
 
     public boolean gameOver() throws IOException, InterruptedException {
         if (didWeWin()) {
-            System.out.println("Congrats. You won the game\n"+
-								"The mystery word was: ' " + mysteryWord + " '");
+            System.out.println("Congrats. You won the game");
+
         }
         else if (didWeLose())	{	System.out.println(	"Sorry. You lost. You used all your 6 chances. TT^TT\n"+
 														"The mystery word was: ' " + mysteryWord + " '");
 									System.out.println("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+
         }
         return didWeWin() || didWeLose();
     }
