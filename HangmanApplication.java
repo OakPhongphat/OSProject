@@ -25,9 +25,8 @@ public class HangmanApplication {
                 
                
             while(!startgame){
-                
-                System.out.println("Welcome to hangman! I will pick a word and you will guess it character by character\n" +
-                            ". If you guess it wrong 6 times, then I win. If you can guess it before, then you win"
+                System.out.println("Welcome to hangman! I will pick a word and you will guess it character by character.\n" +
+                            "If you guess it wrong 6 times, then I win. If you can guess it before, then you win"
                             );
                 
                 System.out.println();
@@ -54,7 +53,7 @@ public class HangmanApplication {
         
 
             while (doYouWantToPlay) {
-                clientSocket = new Socket("localhost", 1234);
+                clientSocket = new Socket("192.168.10.161", 1234);
                 outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
                 inFromServer = new Scanner(clientSocket.getInputStream());
                 
@@ -99,11 +98,11 @@ public class HangmanApplication {
                 }
 
                 if (game.playGuess(guess)) {
-                    new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+
                     System.out.println("Great guess. That character is in in the word");
                 }
                 else {
-                    new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+
                     System.out.println("Unfortunately that word is not in the guess");
                 }
                 

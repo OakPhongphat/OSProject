@@ -41,15 +41,13 @@ public  class Hangman {
 
     public boolean gameOver() throws IOException, InterruptedException {
         if (didWeWin()) {
-            //clearConsole();
-            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
             System.out.println("Congrats. You won the game");
+
         }
         else if (didWeLose()) {
-            //clearConsole();
-            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
             System.out.println("Sorry. You lost. You used all your 6 chances. \n" +
-                                " The mystery word was: " + mysteryWord + ".");
+                                "The mystery word was: " + mysteryWord + ".");
+
         }
         return didWeWin() || didWeLose();
     }
@@ -184,22 +182,7 @@ public  class Hangman {
         
     }
     
-    /*private void clearConsole() throws IOException {
-        Thread clear = new Thread(ClearConsole());
-        clear.start();
-    }
 
-    /*private Runnable ClearConsole() throws IOException {
-        String os;
-        os = System.getProperty("os.name");
-        if(os.contains("windows")){
-            Runtime.getRuntime().exec("cls");
-        }
-        else{
-            Runtime.getRuntime().exec("cler");
-        }
-        return null;
-    } */
     
     
 }
