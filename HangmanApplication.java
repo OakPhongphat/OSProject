@@ -37,6 +37,7 @@ public class HangmanApplication {
                 System.out.println();
                    
                 System.out.println("Do you want to play a Hangman Games Y/N ");
+                
                 inSecFromUser = sc.nextLine();
                 if(inSecFromUser.equals("Y") || inSecFromUser.equals("y")){ 
                     System.out.println("");
@@ -53,7 +54,7 @@ public class HangmanApplication {
         
 
             while (doYouWantToPlay) {
-                clientSocket = new Socket("localhost", 1234); 
+                clientSocket = new Socket("localhost", 1234);
                 outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
                 inFromServer = new Scanner(clientSocket.getInputStream());
                 
@@ -62,7 +63,6 @@ public class HangmanApplication {
                 
                 outToServer.writeBytes(inFromUser+'\n');
                 answer = inFromServer.nextLine(); 
-                System.out.println("FROM SERVER: " + answer);
                 Hangman game = new Hangman(answer);
 
             
@@ -78,24 +78,32 @@ public class HangmanApplication {
                 System.out.println();
 
                 // Get the guess
-                System.out.println("Enter a character that you think is in the word");
+                System.out.println("Enter a character that you think is in the word ");
                 
                 char guess = (sc.next().toLowerCase()).charAt(0);
                 
                 System.out.println();
 
                 // Check if the character has been guessed before
-                if (game.isGuessedAlready(guess)) {
-                    
+                boolean checkGuesed = game.isGuessedAlready(guess);
+                if (checkGuesed) {
+                    while(checkGuesed){
                     System.out.println("Try again. You have guessed this character already");
                     guess = (sc.next().toLowerCase()).charAt(0);
+                        if(game.previousGuesses.contains(guess)){
+                            checkGuesed = true;
+                        }
+                        else checkGuesed = false;
+                    }
                     
                 }
 
                 if (game.playGuess(guess)) {
+                    new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
                     System.out.println("Great guess. That character is in in the word");
                 }
                 else {
+                    new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
                     System.out.println("Unfortunately that word is not in the guess");
                 }
                 
@@ -107,13 +115,24 @@ public class HangmanApplication {
 
             System.out.println();
             
-            System.out.println("Do you want to play another game. Enter Y if you do.");
-             
-            inSecFromUser = sc.next();
-            doYouWantToPlay = ((inSecFromUser.equals("Y") || inSecFromUser.equals("y")));
+            System.out.println("Do you want to play another game Y/N ");
             
-            System.out.println(doYouWantToPlay);
-            
+            boolean check = true;
+            while(check){
+                inSecFromUser = sc.next();
+                if(inSecFromUser.equals("Y") || inSecFromUser.equals("y")){
+                    doYouWantToPlay = true;
+                    check = false;
+                }
+                else if(inSecFromUser.equals("N") || inSecFromUser.equals("n")){
+                    System.out.println("Thack you for playing our game ");
+                    doYouWantToPlay = false;
+                    check = false;
+                }
+                else{
+                    System.out.println("Please, Try again ");
+                }
+            }
             
             
         }

@@ -17,7 +17,7 @@ public  class Hangman {
     public Hangman(String answer){
         
         mysteryWord = answer;
-        System.out.println(mysteryWord.length());
+        System.out.println("Word length is "+mysteryWord.length());
         currentGuess = initializeCurrentGuess();
     }
  
@@ -179,7 +179,7 @@ public  class Hangman {
                 "|\n";
     }
     public void drawGuess() {
-        System.out.println("You already use this letter");
+        System.out.println("You already use this letter ");
         System.out.println(previousGuesses);
         
     }
