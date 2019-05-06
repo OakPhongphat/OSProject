@@ -20,7 +20,7 @@ public class HangmanApplication {
         String inFromUser = null ;
         String inSecFromUser = null;
              
-        try {  
+        try {   
 
                 
                
