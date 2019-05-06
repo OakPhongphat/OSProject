@@ -56,7 +56,7 @@ public class HangmanApplication {
             
         
             while (doYouWantToPlay) {
-                clientSocket = new Socket("localhost", 1234); 
+                clientSocket = new Socket("localhost", 1234);
                 outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
                 inFromServer = new Scanner(clientSocket.getInputStream());
                 
@@ -115,6 +115,8 @@ public class HangmanApplication {
             doYouWantToPlay = ((inSecFromUser.equals("Y") || inSecFromUser.equals("y")));
             
             System.out.println(doYouWantToPlay);
+			if(doYouWantToPlay);
+			else System.out.println("Exit the Programe");
             
             
             
