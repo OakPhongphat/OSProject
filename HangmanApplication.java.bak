@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class HangmanApplication {
     
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         
         Scanner sc = new Scanner(System.in);
         String answer = null;
@@ -13,16 +13,18 @@ public class HangmanApplication {
         boolean startgame = false;
         
              
-        boolean doYouWantToPlay = true;     
+             
         Socket clientSocket = null;
         DataOutputStream outToServer = null;
         Scanner inFromServer = null;
         String inFromUser = null ;
         String inSecFromUser = null;
              
-        try {  
-
+        try { 
                 
+            /*clientSocket = new Socket("172.20.185.209", 1234); 
+            outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
+            inFromServer = new Scanner(clientSocket.getInputStream());*/
                
             while(!startgame){
                 
@@ -45,15 +47,19 @@ public class HangmanApplication {
                 }
                 else{
                     System.out.println("Programe will exit ");
-                    doYouWantToPlay = false;
-                    startgame = true;
                 }
             }
-
+                
+              
+            
+            
+            
+            
+            boolean doYouWantToPlay = true;
+            
         
-
             while (doYouWantToPlay) {
-                clientSocket = new Socket("localhost", 1234); 
+                clientSocket = new Socket("172.20.185.209", 1234); 
                 outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
                 inFromServer = new Scanner(clientSocket.getInputStream());
                 
@@ -64,10 +70,9 @@ public class HangmanApplication {
                 answer = inFromServer.nextLine(); 
                 System.out.println("FROM SERVER: " + answer);
                 Hangman game = new Hangman(answer);
-
             
            
-          do {
+            do {
                 
                 System.out.println();
                 System.out.println(game.drawPicture());
