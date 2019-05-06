@@ -17,7 +17,7 @@ public  class Hangman {
     public Hangman(String answer){
         
         mysteryWord = answer;
-        System.out.println(mysteryWord.length());
+        System.out.println("Word length is "+mysteryWord.length());
         currentGuess = initializeCurrentGuess();
     }
  
@@ -42,12 +42,12 @@ public  class Hangman {
     public boolean gameOver() throws IOException, InterruptedException {
         if (didWeWin()) {
             //clearConsole();
-            //new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
             System.out.println("Congrats. You won the game");
         }
         else if (didWeLose()) {
             //clearConsole();
-            //new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
             System.out.println("Sorry. You lost. You used all your 6 chances. \n" +
                                 " The mystery word was: " + mysteryWord + ".");
         }
@@ -179,7 +179,7 @@ public  class Hangman {
                 "|\n";
     }
     public void drawGuess() {
-        System.out.println("You already use this letter");
+        System.out.println("You already use this letter ");
         System.out.println(previousGuesses);
         
     }
