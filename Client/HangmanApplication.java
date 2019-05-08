@@ -33,7 +33,7 @@ public class HangmanApplication
                 
 				boolean checkWantToGame = true;
                 while(checkWantToGame)
-				{	inSecFromUser = sc.nextLine();
+				{	inSecFromUser = sc.next();
 					if	(inSecFromUser.equals("Y") || inSecFromUser.equals("y"))
 					{	System.out.println("");
 						startgame = true;
@@ -50,7 +50,7 @@ public class HangmanApplication
             }
 
             while (doYouWantToPlay)
-			{	clientSocket = new Socket("192.168.10.161", 1234);
+			{	clientSocket = new Socket("127.0.0.1", 6789);
                 outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
                 inFromServer = new Scanner(clientSocket.getInputStream());
 
@@ -59,7 +59,7 @@ public class HangmanApplication
                 System.out.println("Alright, Lets play");
                 
                 outToServer.writeBytes(inFromUser+'\n');
-                answer = inFromServer.nextLine(); 
+                answer = inFromServer.next(); 
                 Hangman game = new Hangman(answer);
 
 			do	{	System.out.println();

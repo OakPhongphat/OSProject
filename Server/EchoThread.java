@@ -23,7 +23,9 @@ public class EchoThread extends Thread {
         try {
             inFromClient = new Scanner(connectionSocket.getInputStream());
             outToClient = new DataOutputStream(connectionSocket.getOutputStream());  
-            chooseWord();          
+            
+	    String clientSentence = inFromClient.nextLine();
+	    chooseWord();          
             
             //Send answer to client
             answer = mysteryWord;

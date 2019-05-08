@@ -7,7 +7,7 @@ public class TCPConcurrentServer {
        
       ServerSocket welcomeSocket = null;
       try {
-         welcomeSocket = new ServerSocket(1234);
+         welcomeSocket = new ServerSocket(6789);
       }
       catch (IOException e) {
          System.out.println("Cannot create a welcome socket");
